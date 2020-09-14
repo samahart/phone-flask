@@ -4,11 +4,22 @@
     <link rel="icon" href="static/icon/favicon.svg">
     <link rel="manifest" href="static/manifest.json">
 </head>
-<body>
+<body onload="getNewPicture()">
 
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
+<img id="picture-frame"/>
 
 </body>
 </html>
+
+<script>
+function getNewPicture() {
+    document.getElementById("picture-frame").src = "static/temp/IMG_20200906_175321556.jpg"
+}
+</script>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+</style>
