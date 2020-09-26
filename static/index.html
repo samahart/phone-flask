@@ -5,21 +5,32 @@
     <link rel="manifest" href="static/manifest.json">
 </head>
 <body onload="getNewPicture()">
-
-<img id="picture-frame"/>
-
+<img class="picture-fit">
 </body>
 </html>
 
 <script>
+// document.body.style.backgroundColor = "red";  // TODO create function to change this
+
 function getNewPicture() {
-    document.getElementById("picture-frame").src = "static/temp/IMG_20200906_175321556.jpg"
+    document.getElementById("picture-fit").src = "static/temp/IMG_20200906_175321556.jpg"
 }
 </script>
-
 <style>
 body {
+    width: 100%;
+    height: 100%;
+    position: fixed;
     margin: 0;
-    padding: 0;
+    background-color: black;
+}
+
+.picture-fit {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>
