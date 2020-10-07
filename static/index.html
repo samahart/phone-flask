@@ -5,7 +5,7 @@
     <link rel="manifest" href="static/manifest.json">
 </head>
 <body onload="getNewPicture()">
-<img class="picture-fit">
+<img id="picture-fit">
 </body>
 </html>
 
@@ -13,8 +13,25 @@
 // document.body.style.backgroundColor = "red";  // TODO create function to change this
 
 function getNewPicture() {
-    document.getElementById("picture-fit").src = "static/temp/IMG_20200906_175321556.jpg"
+    fetch('/picture')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(myBlob => {
+            document.getElementById("picture-fit").src = URL.createObjectURL(myBlob);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
 }
+
+
+main_loop = setInterval(getNewPicture, 5000);
+// clearInterval(main_loop);
+
 </script>
 <style>
 body {
@@ -25,7 +42,7 @@ body {
     background-color: black;
 }
 
-.picture-fit {
+#picture-fit {
     width: auto;
     height: 100%;
     object-fit: contain;
